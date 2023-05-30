@@ -12,10 +12,27 @@ function Gameboard() {
   }
 
   const getBoard = () => board;
+
+  const updateBoard = (row, column, player) => {
+    board[row][column].addToken(player);
+  };
+
+  // print board to console
+  const printBoard = () => {
+    const boardWithCellValues = [];
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < columns; j++) {
+        boardWithCellValues.push(board[i][j].getValue());
+      }
+    }
+    console.log(boardWithCellValues);
+  };
+
+  return { getBoard, updateBoard, printBoard };
 }
 
 function Cell() {
-  let value = ' ';
+  let value = '-';
 
   // accept a player's token to change the value of the cell
   const addToken = (player) => {
@@ -35,4 +52,13 @@ const Player = (name, token) => {
   return { getName, getToken };
 };
 
-function PlayGame() {}
+function PlayGame() {
+  let game = Gameboard();
+  game.updateBoard(0, 1, 'X');
+  game.updateBoard(1, 2, 'O');
+  game.updateBoard(0, 2, 'O');
+  game.updateBoard(2, 2, 'X');
+  game.printBoard();
+}
+
+PlayGame();
