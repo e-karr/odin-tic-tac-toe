@@ -10,8 +10,6 @@ function Gameboard() {
       board[i].push(Cell());
     }
   }
-
-  console.log(board);
 }
 
 function Cell() {
@@ -27,3 +25,10 @@ function Cell() {
 
   return { addToken, getValue };
 }
+
+const Player = (name, token) => {
+  const getName = () => name;
+  const getToken = () => token;
+
+  return { getName, getToken };
+};
