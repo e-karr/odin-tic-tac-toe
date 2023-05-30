@@ -10,6 +10,8 @@ function Gameboard() {
       board[i].push(Cell());
     }
   }
+
+  const getBoard = () => board;
 }
 
 function Cell() {
