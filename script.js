@@ -34,3 +34,5 @@ const Player = (name, token) => {
 
   return { getName, getToken };
 };
+
+function PlayGame() {}
