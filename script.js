@@ -53,12 +53,11 @@ const Player = (name, token) => {
 };
 
 function PlayGame() {
-  let game = Gameboard();
-  game.updateBoard(0, 1, 'X');
-  game.updateBoard(1, 2, 'O');
-  game.updateBoard(0, 2, 'O');
-  game.updateBoard(2, 2, 'X');
-  game.printBoard();
+  let board = Gameboard();
+
+  let input = require('readline-sync');
+
+  board.printBoard();
 }
 
 PlayGame();
