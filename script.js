@@ -80,9 +80,7 @@ function PlayGame() {
     console.log(`${getActivePlayer().getName()}'s turn.`);
   };
 
-  const winGame = (token) => {
-    const currentBoard = board.getBoard();
-
+  const winGame = (token, currentBoard) => {
     // check for win in columns
     for (let i = 0; i < currentBoard.rows; i++) {
       let tokenCounter = 0;
@@ -124,7 +122,7 @@ function PlayGame() {
         currentBoard[2][0] === token) ||
       (currentBoard[0][0] === token &&
         currentBoard[1][1] === token &&
-        currentBoard[2][1] === token)
+        currentBoard[2][2] === token)
     ) {
       return true;
     }
@@ -140,7 +138,7 @@ function PlayGame() {
     board.updateCell(row, column, getActivePlayer().getToken());
 
     //check for winner
-    const winner = winGame(getActivePlayer().getToken());
+    const winner = winGame(getActivePlayer().getToken(), board.getBoard());
 
     if (winner) {
       console.log(`${getActivePlayer().getName()} wins!`);
