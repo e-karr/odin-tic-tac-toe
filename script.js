@@ -57,7 +57,23 @@ function PlayGame() {
 
   let input = require('readline-sync');
 
-  board.printBoard();
+  const players = [];
+
+  // get player names and tokens
+  for (let i = 0; i < 2; i++) {
+    let name = input.question(`Player ${i+1} Name: `);
+    let token = input.question(`Player ${i+1} Token: `);
+
+    let player = Player(name, token);
+    players.push(player);
+  }
+
+  let activePlayer = players[0];
+  const getActivePlayer = () => activePlayer;
+
+  
+
+//   board.printBoard();
 }
 
 PlayGame();
