@@ -80,13 +80,13 @@ function PlayGame() {
     console.log(`${getActivePlayer().getName()}'s turn.`);
   };
 
-  const winGame = (token, currentBoard) => {
+  const winGame = (token, rows, columns, currentBoard) => {
     // check for win in columns
-    for (let i = 0; i < currentBoard.rows; i++) {
+    for (let i = 0; i < rows; i++) {
       let tokenCounter = 0;
 
-      for (let j = 0; j < currentBoard.columns; j++) {
-        if (currentBoard[j][i] === token) {
+      for (let j = 0; j < columns; j++) {
+        if (currentBoard[j][i].getValue() === token) {
           tokenCounter++;
         } else {
           break;
@@ -99,11 +99,11 @@ function PlayGame() {
     }
 
     // check for win in rows
-    for (let i = 0; i < currentBoard.rows; i++) {
+    for (let i = 0; i < rows; i++) {
       let tokenCounter = 0;
 
-      for (let j = 0; j < currentBoard.columns; j++) {
-        if (currentBoard[i][j] === token) {
+      for (let j = 0; j < columns; j++) {
+        if (currentBoard[i][j].getValue() === token) {
           tokenCounter++;
         } else {
           break;
@@ -117,12 +117,12 @@ function PlayGame() {
 
     // check for win in diagonals
     if (
-      (currentBoard[0][2] === token &&
-        currentBoard[1][1] === token &&
-        currentBoard[2][0] === token) ||
-      (currentBoard[0][0] === token &&
-        currentBoard[1][1] === token &&
-        currentBoard[2][2] === token)
+      (currentBoard[0][2].getValue() === token &&
+        currentBoard[1][1].getValue() === token &&
+        currentBoard[2][0].getValue() === token) ||
+      (currentBoard[0][0].getValue() === token &&
+        currentBoard[1][1].getValue() === token &&
+        currentBoard[2][2].getValue() === token)
     ) {
       return true;
     }
@@ -138,9 +138,15 @@ function PlayGame() {
     board.updateCell(row, column, getActivePlayer().getToken());
 
     //check for winner
-    const winner = winGame(getActivePlayer().getToken(), board.getBoard());
+    const winner = winGame(
+      getActivePlayer().getToken(),
+      board.rows,
+      board.columns,
+      board.getBoard()
+    );
 
     if (winner) {
+      board.printBoard();
       console.log(`${getActivePlayer().getName()} wins!`);
       return true;
     }
@@ -155,7 +161,7 @@ function PlayGame() {
   // initial play game message
   printNewRound();
 
-  return { playRound, getActivePlayer, players, activePlayer };
+  return { playRound, getActivePlayer };
 }
 
 const game = PlayGame();
