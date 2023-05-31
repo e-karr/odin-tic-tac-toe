@@ -61,8 +61,8 @@ function PlayGame() {
 
   // get player names and tokens
   for (let i = 0; i < 2; i++) {
-    let name = input.question(`Player ${i+1} Name: `);
-    let token = input.question(`Player ${i+1} Token: `);
+    let name = input.question(`Player ${i + 1} Name: `);
+    let token = input.question(`Player ${i + 1} Token: `);
 
     let player = Player(name, token);
     players.push(player);
@@ -71,9 +71,11 @@ function PlayGame() {
   let activePlayer = players[0];
   const getActivePlayer = () => activePlayer;
 
-  
+  const switchPlayerTurn = () => {
+    activePlayer = activePlayer === players[0] ? players[1] : players[0];
+  };
 
-//   board.printBoard();
+  //   board.printBoard();
 }
 
 PlayGame();
