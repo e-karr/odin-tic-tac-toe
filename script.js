@@ -13,7 +13,7 @@ function Gameboard() {
 
   const getBoard = () => board;
 
-  const updateBoard = (row, column, player) => {
+  const updateCell = (row, column, player) => {
     board[row][column].addToken(player);
   };
 
@@ -28,7 +28,7 @@ function Gameboard() {
     console.log(boardWithCellValues);
   };
 
-  return { getBoard, updateBoard, printBoard };
+  return { getBoard, updateCell, printBoard };
 }
 
 function Cell() {
@@ -73,6 +73,11 @@ function PlayGame() {
 
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
+  };
+
+  const printNewRound = () => {
+    board.printBoard();
+    console.log(`${getActivePlayer().name}'s turn.`);
   };
 
   //   board.printBoard();
