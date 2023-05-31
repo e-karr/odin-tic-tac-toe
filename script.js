@@ -28,7 +28,7 @@ function Gameboard() {
     console.log(boardWithCellValues);
   };
 
-  return { getBoard, updateCell, printBoard };
+  return { getBoard, updateCell, printBoard, rows, columns };
 }
 
 function Cell() {
@@ -80,7 +80,85 @@ function PlayGame() {
     console.log(`${getActivePlayer().name}'s turn.`);
   };
 
-  //   board.printBoard();
+  const winGame = (token) => {
+    const currentBoard = board.getBoard();
+
+    // check for win in columns
+    for (let i = 0; i < currentBoard.rows; i++) {
+      let tokenCounter = 0;
+
+      for (let j = 0; j < currentBoard.columns; j++) {
+        if (currentBoard[j][i] === token) {
+          tokenCounter++;
+        } else {
+          break;
+        }
+      }
+
+      if (tokenCounter === 3) {
+        return true;
+      }
+    }
+
+    // check for win in rows
+    for (let i = 0; i < currentBoard.rows; i++) {
+      let tokenCounter = 0;
+
+      for (let j = 0; j < currentBoard.columns; j++) {
+        if (currentBoard[i][j] === token) {
+          tokenCounter++;
+        } else {
+          break;
+        }
+      }
+
+      if (tokenCounter === 3) {
+        return true;
+      }
+    }
+
+    // check for win in diagonals
+    if (
+      (currentBoard[0][2] === token &&
+        currentBoard[1][1] === token &&
+        currentBoard[2][0] === token) ||
+      (currentBoard[0][0] === token &&
+        currentBoard[1][1] === token &&
+        currentBoard[2][1] === token)
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const playRound = () => {
+    //get selected cell
+    const row = input.question(`Select row: `);
+    const column = input.question('Select column');
+
+    board.updateCell(row, column, getActivePlayer().token);
+
+    //check for winner
+    const winner = winGame(getActivePlayer().token);
+
+    if (winner) {
+      console.log(`${getActivePlayer().name} wins!`);
+      return true;
+    }
+
+    // switch player turn
+    switchPlayerTurn();
+    printNewRound();
+
+    return false;
+  };
+
+  // initial play game message
+  printNewRound();
+
+  return { playRound, getActivePlayer };
 }
 
-PlayGame();
+const game = PlayGame();
+console.log(game.getActivePlayer().name);
