@@ -166,6 +166,10 @@ function PlayGame() {
 
 const game = PlayGame();
 
-while (!game.playRound()) {
-  game.playRound();
+while (true) {
+  let winner = game.playRound();
+
+  if (winner) {
+    break;
+  }
 }
