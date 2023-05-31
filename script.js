@@ -77,7 +77,7 @@ function PlayGame() {
 
   const printNewRound = () => {
     board.printBoard();
-    console.log(`${getActivePlayer().name}'s turn.`);
+    console.log(`${getActivePlayer().getName()}'s turn.`);
   };
 
   const winGame = (token) => {
@@ -135,15 +135,15 @@ function PlayGame() {
   const playRound = () => {
     //get selected cell
     const row = input.question(`Select row: `);
-    const column = input.question('Select column');
+    const column = input.question('Select column: ');
 
-    board.updateCell(row, column, getActivePlayer().token);
+    board.updateCell(row, column, getActivePlayer().getToken());
 
     //check for winner
-    const winner = winGame(getActivePlayer().token);
+    const winner = winGame(getActivePlayer().getToken());
 
     if (winner) {
-      console.log(`${getActivePlayer().name} wins!`);
+      console.log(`${getActivePlayer().getName()} wins!`);
       return true;
     }
 
@@ -157,8 +157,11 @@ function PlayGame() {
   // initial play game message
   printNewRound();
 
-  return { playRound, getActivePlayer };
+  return { playRound, getActivePlayer, players, activePlayer };
 }
 
 const game = PlayGame();
-console.log(game.getActivePlayer().name);
+
+while (!game.playRound()) {
+  game.playRound();
+}
