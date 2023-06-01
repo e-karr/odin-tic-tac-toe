@@ -52,18 +52,10 @@ const Player = (name, token) => {
   return { getName, getToken };
 };
 
-function PlayGame(
-  playerOneName = 'Player One',
-  playerOneToken = 'X',
-  playerTwoName = 'Player Two',
-  playerTwoToken = 'O'
-) {
+function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
   let board = Gameboard();
 
-  const players = [
-    Player(playerOneName, playerOneToken),
-    Player(playerTwoName, playerTwoToken),
-  ];
+  const players = [Player(playerOneName, 'X'), Player(playerTwoName, 'O')];
 
   let activePlayer = players[0];
   const getActivePlayer = () => activePlayer;
@@ -160,7 +152,7 @@ function PlayGame(
 function ScreenControler() {
   let playerOneName;
   let playerTwoName;
-  const game = PlayGame(playerOneName, 'X', playerTwoName, 'O');
+  const game = PlayGame(playerOneName, playerTwoName);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
   const submitNames = document.querySelector('#submitNames');
