@@ -158,8 +158,16 @@ function PlayGame(
 }
 
 function ScreenControler() {
-  const game = PlayGame();
+  let playerOneName;
+  let playerTwoName;
+  const game = PlayGame(playerOneName, 'X', playerTwoName, 'O');
   const boardDiv = document.querySelector('.board');
+  const submitNames = document.querySelector('#submitNames');
+
+  const getPlayerNames = () => {
+    playerOneName = document.querySelector('#player1name').value;
+    playerTwoName = document.querySelector('#player2name').value;
+  };
 
   const updateBoard = () => {
     //clear the board
@@ -182,6 +190,8 @@ function ScreenControler() {
       });
     });
   };
+
+  submitNames.addEventListener('click', getPlayerNames);
 
   updateBoard();
 }
