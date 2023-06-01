@@ -52,21 +52,18 @@ const Player = (name, token) => {
   return { getName, getToken };
 };
 
-function PlayGame() {
+function PlayGame(
+  playerOneName = 'Player One',
+  playerOneToken = 'X',
+  playerTwoName = 'Player Two',
+  playerTwoToken = 'O'
+) {
   let board = Gameboard();
 
-  let input = require('readline-sync');
-
-  const players = [];
-
-  // get player names and tokens
-  for (let i = 0; i < 2; i++) {
-    let name = input.question(`Player ${i + 1} Name: `);
-    let token = input.question(`Player ${i + 1} Token: `);
-
-    let player = Player(name, token);
-    players.push(player);
-  }
+  const players = [
+    Player(playerOneName, playerOneToken),
+    Player(playerTwoName, playerTwoToken),
+  ];
 
   let activePlayer = players[0];
   const getActivePlayer = () => activePlayer;
@@ -130,11 +127,7 @@ function PlayGame() {
     return false;
   };
 
-  const playRound = () => {
-    //get selected cell
-    const row = input.question(`Select row: `);
-    const column = input.question('Select column: ');
-
+  const playRound = (row, column) => {
     board.updateCell(row, column, getActivePlayer().getToken());
 
     //check for winner
@@ -161,15 +154,46 @@ function PlayGame() {
   // initial play game message
   printNewRound();
 
-  return { playRound, getActivePlayer };
+  return { playRound, getActivePlayer, getBoard: board.getBoard };
 }
 
-const game = PlayGame();
+function ScreenControler() {
+  const game = PlayGame();
+  const boardDiv = document.querySelector('.board');
 
-while (true) {
-  let winner = game.playRound();
+  const updateBoard = () => {
+    //clear the board
+    boardDiv.textContent = '';
 
-  if (winner) {
-    break;
-  }
+    //newest version of the board
+    const board = game.getBoard();
+
+    //render board
+    board.forEach((row) => {
+      row.forEach((cell, index) => {
+        const cellButton = document.createElement('button');
+        cellButton.classList.add('cell');
+
+        cellButton.dataset.column = index;
+        cellButton.dataset.row = row;
+
+        cellButton.textContent = cell.getValue();
+        boardDiv.appendChild(cellButton);
+      });
+    });
+  };
+
+  updateBoard();
 }
+
+ScreenControler();
+
+// const game = PlayGame();
+
+// while (true) {
+//   let winner = game.playRound();
+
+//   if (winner) {
+//     break;
+//   }
+// }
