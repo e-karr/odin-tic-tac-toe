@@ -152,7 +152,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
 function ScreenControler() {
   let playerOneName;
   let playerTwoName;
-  const game = PlayGame(playerOneName, playerTwoName);
+  let game = PlayGame(playerOneName, playerTwoName);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
   const submitNames = document.querySelector('#submitNames');
@@ -160,6 +160,8 @@ function ScreenControler() {
   const getPlayerNames = () => {
     playerOneName = document.querySelector('#player1name').value;
     playerTwoName = document.querySelector('#player2name').value;
+    game = PlayGame(playerOneName, playerTwoName);
+    updateBoard();
   };
 
   const updateBoard = () => {
@@ -169,6 +171,7 @@ function ScreenControler() {
     //newest version of the board and player turn
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
+    console.log(activePlayer);
 
     //displayer player's turn
     playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
@@ -188,7 +191,18 @@ function ScreenControler() {
     });
   };
 
+  function clickHandlerBoard(e) {
+    const selectedRow = e.target.dataset.row;
+    const selectedColumn = e.target.dataset.column;
+
+    if (!selectedRow || !selectedColumn) return;
+
+    game.playRound(selectedRow, selectedColumn);
+    updateBoard();
+  }
+
   submitNames.addEventListener('click', getPlayerNames);
+  boardDiv.addEventListener('click', clickHandlerBoard);
 
   updateBoard();
 }
