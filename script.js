@@ -161,6 +161,7 @@ function ScreenControler() {
   let playerOneName;
   let playerTwoName;
   const game = PlayGame(playerOneName, 'X', playerTwoName, 'O');
+  const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
   const submitNames = document.querySelector('#submitNames');
 
@@ -173,8 +174,12 @@ function ScreenControler() {
     //clear the board
     boardDiv.textContent = '';
 
-    //newest version of the board
+    //newest version of the board and player turn
     const board = game.getBoard();
+    const activePlayer = game.getActivePlayer();
+
+    //displayer player's turn
+    playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
 
     //render board
     board.forEach((row, rowIndex) => {
