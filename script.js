@@ -83,7 +83,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
       }
 
       if (tokenCounter === 3) {
-        return true;
+        return 'winner';
       }
     }
 
@@ -100,7 +100,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
       }
 
       if (tokenCounter === 3) {
-        return true;
+        return 'winner';
       }
     }
 
@@ -113,7 +113,19 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
         currentBoard[1][1].getValue() === token &&
         currentBoard[2][2].getValue() === token)
     ) {
-      return true;
+      return 'winner';
+    }
+
+    // check for tie
+    const tokens = [];
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < columns; j++) {
+        tokens.push(currentBoard[i][j].getValue());
+      }
+    }
+
+    if (!tokens.includes('-')) {
+      return 'tie';
     }
 
     return false;
@@ -130,17 +142,19 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
       board.getBoard()
     );
 
-    if (winner) {
+    if (winner === 'winner') {
       board.printBoard();
       console.log(`${getActivePlayer().getName()} wins!`);
-      return true;
+      return `${getActivePlayer().getName()} wins!`;
+    } else if (winner === 'tie') {
+      board.printBoard();
+      console.log("It's a tie");
+      return "It's a tie";
     }
 
     // switch player turn
     switchPlayerTurn();
     printNewRound();
-
-    return false;
   };
 
   // initial play game message
