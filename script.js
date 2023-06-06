@@ -17,18 +17,7 @@ function Gameboard() {
     board[row][column].addToken(player);
   };
 
-  // print board to console
-  const printBoard = () => {
-    const boardWithCellValues = [];
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < columns; j++) {
-        boardWithCellValues.push(board[i][j].getValue());
-      }
-    }
-    console.log(boardWithCellValues);
-  };
-
-  return { getBoard, updateCell, printBoard, rows, columns };
+  return { getBoard, updateCell, rows, columns };
 }
 
 function Cell() {
@@ -62,11 +51,6 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
 
   const switchPlayerTurn = () => {
     activePlayer = activePlayer === players[0] ? players[1] : players[0];
-  };
-
-  const printNewRound = () => {
-    board.printBoard();
-    console.log(`${getActivePlayer().getName()}'s turn.`);
   };
 
   const winGame = (token, rows, columns, currentBoard) => {
@@ -143,20 +127,14 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
     );
 
     if (winner === 'winner') {
-      // board.printBoard();
       return `${getActivePlayer().getName()} wins!`;
     } else if (winner === 'tie') {
-      // board.printBoard();
       return "It's a tie";
     }
 
     // switch player turn
     switchPlayerTurn();
-    // printNewRound();
   };
-
-  // initial play game message
-  // printNewRound();
 
   return { playRound, getActivePlayer, getBoard: board.getBoard };
 }
@@ -184,7 +162,6 @@ function ScreenControler() {
     //newest version of the board and player turn
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
-    // console.log(activePlayer);
 
     //displayer player's turn
     playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
@@ -215,6 +192,7 @@ function ScreenControler() {
     if (!selectedRow || !selectedColumn) return;
 
     const winner = game.playRound(selectedRow, selectedColumn);
+    
     if (winner) {
       winnerDiv.textContent = winner;
     }
@@ -229,13 +207,3 @@ function ScreenControler() {
 }
 
 ScreenControler();
-
-// const game = PlayGame();
-
-// while (true) {
-//   let winner = game.playRound();
-
-//   if (winner) {
-//     break;
-//   }
-// }
