@@ -163,6 +163,10 @@ function ScreenControler() {
     updateBoard();
   };
 
+  const newGame = () => {
+    window.location.reload();
+  };
+
   const updateBoard = () => {
     //clear the board
     boardDiv.textContent = '';
@@ -208,10 +212,13 @@ function ScreenControler() {
     updateBoard();
   }
 
+  // add event listeners
   submitNamesButton.addEventListener('click', getPlayerNames);
   resetBoardButton.addEventListener('click', resetBoard);
+  newGameButton.addEventListener('click', newGame);
   boardDiv.addEventListener('click', clickHandlerBoard);
 
+  // initial board
   updateBoard();
 }
 
