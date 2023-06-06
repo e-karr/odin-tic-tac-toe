@@ -143,22 +143,20 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
     );
 
     if (winner === 'winner') {
-      board.printBoard();
-      console.log(`${getActivePlayer().getName()} wins!`);
+      // board.printBoard();
       return `${getActivePlayer().getName()} wins!`;
     } else if (winner === 'tie') {
-      board.printBoard();
-      console.log("It's a tie");
+      // board.printBoard();
       return "It's a tie";
     }
 
     // switch player turn
     switchPlayerTurn();
-    printNewRound();
+    // printNewRound();
   };
 
   // initial play game message
-  printNewRound();
+  // printNewRound();
 
   return { playRound, getActivePlayer, getBoard: board.getBoard };
 }
@@ -185,7 +183,7 @@ function ScreenControler() {
     //newest version of the board and player turn
     const board = game.getBoard();
     const activePlayer = game.getActivePlayer();
-    console.log(activePlayer);
+    // console.log(activePlayer);
 
     //displayer player's turn
     playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
@@ -200,6 +198,11 @@ function ScreenControler() {
         cellButton.dataset.row = rowIndex;
 
         cellButton.textContent = cell.getValue();
+
+        if (cellButton.textContent !== '-') {
+          cellButton.disabled = true;
+        }
+        
         boardDiv.appendChild(cellButton);
       });
     });
@@ -208,10 +211,10 @@ function ScreenControler() {
   function clickHandlerBoard(e) {
     const selectedRow = e.target.dataset.row;
     const selectedColumn = e.target.dataset.column;
-
     if (!selectedRow || !selectedColumn) return;
 
-    game.playRound(selectedRow, selectedColumn);
+    const winner = game.playRound(selectedRow, selectedColumn);
+    console.log({ winner: winner });
     updateBoard();
   }
 
