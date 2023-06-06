@@ -145,8 +145,10 @@ function ScreenControler() {
   let game = PlayGame(playerOneName, playerTwoName);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
-  const submitNames = document.querySelector('#submitNames');
+  const submitNamesButton = document.querySelector('#submitNames');
   const winnerDiv = document.querySelector('.winner');
+  const resetBoardButton = document.querySelector('#resetBoard');
+  const newGameButton = document.querySelector('#newGame');
 
   const getPlayerNames = () => {
     playerOneName = document.querySelector('#player1name').value;
@@ -192,7 +194,7 @@ function ScreenControler() {
     if (!selectedRow || !selectedColumn) return;
 
     const winner = game.playRound(selectedRow, selectedColumn);
-    
+
     if (winner) {
       winnerDiv.textContent = winner;
     }
@@ -200,7 +202,7 @@ function ScreenControler() {
     updateBoard();
   }
 
-  submitNames.addEventListener('click', getPlayerNames);
+  submitNamesButton.addEventListener('click', getPlayerNames);
   boardDiv.addEventListener('click', clickHandlerBoard);
 
   updateBoard();
