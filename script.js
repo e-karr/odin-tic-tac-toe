@@ -149,6 +149,7 @@ function ScreenControler() {
   const winnerDiv = document.querySelector('.winner');
   const resetBoardButton = document.querySelector('#resetBoard');
   const newGameButton = document.querySelector('#newGame');
+  const gameDiv = document.querySelector('.game');
 
   const getPlayerNames = () => {
     playerOneName = document.querySelector('#player1name').value;
