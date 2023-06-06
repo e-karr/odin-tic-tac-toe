@@ -168,6 +168,7 @@ function ScreenControler() {
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
   const submitNames = document.querySelector('#submitNames');
+  const winnerDiv = document.querySelector('.winner');
 
   const getPlayerNames = () => {
     playerOneName = document.querySelector('#player1name').value;
@@ -202,7 +203,7 @@ function ScreenControler() {
         if (cellButton.textContent !== '-') {
           cellButton.disabled = true;
         }
-        
+
         boardDiv.appendChild(cellButton);
       });
     });
@@ -214,7 +215,10 @@ function ScreenControler() {
     if (!selectedRow || !selectedColumn) return;
 
     const winner = game.playRound(selectedRow, selectedColumn);
-    console.log({ winner: winner });
+    if (winner) {
+      winnerDiv.textContent = winner;
+    }
+
     updateBoard();
   }
 
