@@ -157,6 +157,12 @@ function ScreenControler() {
     updateBoard();
   };
 
+  const resetBoard = () => {
+    game = PlayGame(playerOneName, playerTwoName);
+    winnerDiv.textContent = '';
+    updateBoard();
+  };
+
   const updateBoard = () => {
     //clear the board
     boardDiv.textContent = '';
@@ -203,6 +209,7 @@ function ScreenControler() {
   }
 
   submitNamesButton.addEventListener('click', getPlayerNames);
+  resetBoardButton.addEventListener('click', resetBoard);
   boardDiv.addEventListener('click', clickHandlerBoard);
 
   updateBoard();
