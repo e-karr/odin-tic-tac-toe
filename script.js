@@ -200,7 +200,7 @@ function ScreenControler() {
 
         cellButton.textContent = cell.getValue();
 
-        if (cellButton.textContent !== '-') {
+        if (cellButton.textContent !== '-' || winnerDiv.textContent) {
           cellButton.disabled = true;
         }
 
