@@ -2,8 +2,8 @@
 Background Color: #9eb600
 Player Div background color: #bce000
 Xs color: #cc06c4
-Os color: #0062b3
-gameboard borders color: #043f88
+Os color & reset board buttons: #0062b3, white font
+gameboard borders color & submit/new game buttons: #043f88, white font
 */
 @import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
@@ -41,6 +41,7 @@ footer {
 
 .players {
   visibility: visible;
+  background-color: #bce000;
 }
 
 .game {
