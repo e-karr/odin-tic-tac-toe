@@ -5,6 +5,7 @@ Xs color: #cc06c4
 Os color: #0062b3
 gameboard borders color: #043f88
 */
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
 
 body {
     height: 100vh;
@@ -19,6 +20,8 @@ body {
 header {
     justify-self: center;
     align-self: center;
+    font-family: 'Monomaniac One', sans-serif;
+    font-size: 2rem;
 }
 
 .board {
