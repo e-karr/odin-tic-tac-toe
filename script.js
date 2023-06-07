@@ -145,7 +145,6 @@ function ScreenControler() {
   let game = PlayGame(playerOneName, playerTwoName);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
-  const submitNamesButton = document.querySelector('#submitNames');
   const winnerDiv = document.querySelector('.winner');
   const resetBoardButton = document.querySelector('#resetBoard');
   const newGameButton = document.querySelector('#newGame');
@@ -169,7 +168,7 @@ function ScreenControler() {
   };
 
   const newGame = () => {
-    playersDiv.style.visibility = 'visible'
+    playersDiv.style.visibility = 'visible';
     gameDiv.style.visibility = 'hidden';
     playerOneName.value = '';
     playerTwoName.value = '';
@@ -224,7 +223,11 @@ function ScreenControler() {
   }
 
   // add event listeners
-  submitNamesButton.addEventListener('click', getPlayerNames);
+  playersDiv.addEventListener('submit', (e) => {
+    getPlayerNames();
+    e.preventDefault();
+  });
+
   resetBoardButton.addEventListener('click', resetBoard);
   newGameButton.addEventListener('click', newGame);
   boardDiv.addEventListener('click', clickHandlerBoard);
