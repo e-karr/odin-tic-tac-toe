@@ -1,11 +1,24 @@
+/* 
+Background Color: #9eb600
+Player Div background color: #bce000
+Xs color: #cc06c4
+Os color: #0062b3
+gameboard borders color: #043f88
+*/
+
 body {
     height: 100vh;
-    border: 1px solid red;
+    background-color:#9eb600;
     margin: 0;
     padding: 0;
-
     display: grid;
     grid-template-rows: 1fr 4fr 1fr;
+
+}
+
+header {
+    justify-self: center;
+    align-self: center;
 }
 
 .board {
