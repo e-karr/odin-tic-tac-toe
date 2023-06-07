@@ -6,22 +6,29 @@ Os color: #0062b3
 gameboard borders color: #043f88
 */
 @import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
 body {
-    height: 100vh;
-    background-color:#9eb600;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
-
+  height: 100vh;
+  background-color: #9eb600;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr;
+  font-family: 'Oswald', sans-serif;
 }
 
 header {
-    justify-self: center;
-    align-self: center;
-    font-family: 'Monomaniac One', sans-serif;
-    font-size: 2rem;
+  justify-self: center;
+  align-self: center;
+  font-family: 'Monomaniac One', sans-serif;
+  font-size: 2rem;
+}
+
+footer {
+  justify-self: center;
+  align-self: end;
+  padding-bottom: 10px;
 }
 
 .board {
