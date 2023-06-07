@@ -31,6 +31,25 @@ footer {
   padding-bottom: 10px;
 }
 
+main {
+  position: relative;
+}
+
+label {
+    font-size: 1.5rem;
+    padding-right: 5px;
+    white-space: nowrap;
+}
+
+input {
+    height: 1.25rem;
+    font-size: 1.25rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -42,6 +61,25 @@ footer {
 .players {
   visibility: visible;
   background-color: #bce000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 3rem 6rem;
+}
+
+.players>div {
+    margin-bottom: 20px;
+}
+
+.players>button {
+    color: white;
+    background-color: #043f88;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
 }
 
 .game {
