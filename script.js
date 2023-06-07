@@ -140,8 +140,8 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
 }
 
 function ScreenControler() {
-  let playerOneName;
-  let playerTwoName;
+  let playerOneName = document.querySelector('#player1name');
+  let playerTwoName = document.querySelector('#player2name');
   let game = PlayGame(playerOneName, playerTwoName);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
@@ -153,23 +153,29 @@ function ScreenControler() {
   const playersDiv = document.querySelector('.players');
 
   const getPlayerNames = () => {
-    playerOneName = document.querySelector('#player1name').value;
-    playerTwoName = document.querySelector('#player2name').value;
+    let playerOne = playerOneName.value;
+    let playerTwo = playerTwoName.value;
     playersDiv.style.visibility = 'hidden';
     gameDiv.style.visibility = 'visible';
-    game = PlayGame(playerOneName, playerTwoName);
+    game = PlayGame(playerOne, playerTwo);
 
     updateBoard();
   };
 
   const resetBoard = () => {
-    game = PlayGame(playerOneName, playerTwoName);
+    game = PlayGame(playerOneName.value, playerTwoName.value);
     winnerDiv.textContent = '';
     updateBoard();
   };
 
   const newGame = () => {
-    window.location.reload();
+    playersDiv.style.visibility = 'visible'
+    gameDiv.style.visibility = 'hidden';
+    playerOneName.value = '';
+    playerTwoName.value = '';
+    winnerDiv.textContent = '';
+    game = PlayGame(playerOneName.value, playerTwoName.value);
+    updateBoard();
   };
 
   const updateBoard = () => {
