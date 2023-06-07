@@ -150,11 +150,15 @@ function ScreenControler() {
   const resetBoardButton = document.querySelector('#resetBoard');
   const newGameButton = document.querySelector('#newGame');
   const gameDiv = document.querySelector('.game');
+  const playersDiv = document.querySelector('.players');
 
   const getPlayerNames = () => {
     playerOneName = document.querySelector('#player1name').value;
     playerTwoName = document.querySelector('#player2name').value;
+    playersDiv.style.visibility = 'hidden';
+    gameDiv.style.visibility = 'visible';
     game = PlayGame(playerOneName, playerTwoName);
+
     updateBoard();
   };
 
