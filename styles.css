@@ -14,7 +14,7 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-rows: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 4fr 2rem;
   font-family: 'Oswald', sans-serif;
 }
 
@@ -92,11 +92,18 @@ p {
   visibility: hidden;
   display: grid;
   grid-template-rows: 2rem 3fr 2rem 1fr;
-  gap: 5px;
 }
 
 .game #resetBoard {
   background-color: #0062b3;
+}
+
+.turn {
+    padding-bottom: 20px;
+}
+
+.winner {
+    padding-top: 20px;
 }
 
 .gameButtons,
