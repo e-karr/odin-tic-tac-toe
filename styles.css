@@ -91,7 +91,8 @@ p {
 .game {
   visibility: visible;
   display: grid;
-  grid-template-rows: 1fr 3fr 1fr 1fr;
+  grid-template-rows: 2rem 3fr 2rem 1fr;
+  gap: 5px;
 }
 
 .game #resetBoard {
