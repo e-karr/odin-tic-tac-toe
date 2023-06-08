@@ -199,6 +199,12 @@ function ScreenControler() {
 
         cellButton.textContent = cell.getValue();
 
+        if (cellButton.textContent === 'X') {
+          cellButton.classList.add('playerOne');
+        } else if (cellButton.textContent === 'O') {
+          cellButton.classList.add('playerTwo');
+        }
+
         if (cellButton.textContent !== '-' || winnerDiv.textContent) {
           cellButton.disabled = true;
         }
