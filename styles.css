@@ -117,6 +117,14 @@ p {
   font-size: 3rem;
 }
 
+.playerOne {
+  color: #cc06c4;
+}
+
+.playerTwo {
+  color: #0062b3;
+}
+
 button[data-row='0'],
 button[data-row='1'] {
   border-bottom: 2px solid #043f88;
