@@ -59,7 +59,7 @@ p {
 }
 
 .players {
-  visibility: hidden;
+  visibility: visible;
   background-color: #bce000;
   position: absolute;
   top: 50%;
@@ -89,7 +89,7 @@ p {
 }
 
 .game {
-  visibility: visible;
+  visibility: hidden;
   display: grid;
   grid-template-rows: 2rem 3fr 2rem 1fr;
   gap: 5px;
