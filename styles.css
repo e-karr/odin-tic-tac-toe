@@ -36,18 +36,18 @@ main {
 }
 
 label {
-    font-size: 1.5rem;
-    padding-right: 5px;
-    white-space: nowrap;
+  font-size: 1.5rem;
+  padding-right: 5px;
+  white-space: nowrap;
 }
 
 input {
-    height: 1.25rem;
-    font-size: 1.25rem;
+  height: 1.25rem;
+  font-size: 1.25rem;
 }
 
 p {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .board {
@@ -59,7 +59,7 @@ p {
 }
 
 .players {
-  visibility: visible;
+  visibility: hidden;
   background-color: #bce000;
   position: absolute;
   top: 50%;
@@ -69,19 +69,29 @@ p {
   padding: 3rem 6rem;
 }
 
-.players>div {
-    margin-bottom: 20px;
+.players > div {
+  margin-bottom: 20px;
 }
 
-.players>button {
-    color: white;
-    background-color: #043f88;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.5rem;
-    padding: 1rem 2rem;
+.players > button,
+.game > #newGame,
+.game > #resetBoard {
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.players > button,
+.game > #newGame {
+  background-color: #043f88;
 }
 
 .game {
-  visibility: hidden;
+  visibility: visible;
+}
+
+.game > #resetBoard {
+  background-color: #0062b3;
 }
