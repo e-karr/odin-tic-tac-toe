@@ -21,7 +21,7 @@ function Gameboard() {
 }
 
 function Cell() {
-  let value = '-';
+  let value = '';
 
   // accept a player's token to change the value of the cell
   const addToken = (player) => {
@@ -108,7 +108,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
       }
     }
 
-    if (!tokens.includes('-')) {
+    if (!tokens.includes('')) {
       return 'tie';
     }
 
@@ -205,7 +205,7 @@ function ScreenControler() {
           cellButton.classList.add('playerTwo');
         }
 
-        if (cellButton.textContent !== '-' || winnerDiv.textContent) {
+        if (cellButton.textContent !== '' || winnerDiv.textContent) {
           cellButton.disabled = true;
         }
 
