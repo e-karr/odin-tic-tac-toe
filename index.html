@@ -14,24 +14,23 @@
     </header>
 
     <main>
-      <div class="players">
-        <form action="" class="twoPlayer">
-          <div>
-            <label for="player1name">Player One Name: </label>
-            <input type="text" id="player1name" name="player1name" />
-          </div>
-          <div>
-            <label for="player2name">Player Two Name: </label>
-            <input type="text" id="player2name" name="player1name" />
-          </div>
+      <form class="players">
+        <div class="player1">
+          <label for="player1name">Player One Name: </label>
+          <input type="text" id="player1name" name="player1name" />
           <p>Player One is always X.</p>
-          <button type="submit" id="submitNames">Submit</button>
-        </form>
-        <div class="computer">
-          <p>OR</p>
-          <button type="button" id="againstComputer">Play Against Computer</button>
         </div>
-      </div>
+        <div class="player2">
+          <label for="player2name">Player Two Name: </label>
+          <input type="text" id="player2name" name="player1name" />
+          <button type="submit" id="submitNames">Submit</button>
+        </div>
+
+        <p id="or">OR</p>
+        <button type="button" id="againstComputer">
+          Play Against Computer
+        </button>
+      </form>
       <div class="game">
         <div class="turn"></div>
         <div class="board"></div>
