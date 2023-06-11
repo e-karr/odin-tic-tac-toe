@@ -58,7 +58,7 @@ p {
   width: 350px;
 }
 
-.twoPlayer {
+.players {
   visibility: visible;
   background-color: #bce000;
   position: absolute;
@@ -67,6 +67,18 @@ p {
   transform: translate(-50%, -50%);
   text-align: center;
   padding: 3rem 6rem;
+
+  display: flex;
+  gap: 10px;
+}
+
+.computer {
+  border-left: 2px solid #043f88;
+  padding-left: 2rem;
+}
+
+.computer>p {
+  font-size: 1.5rem;
 }
 
 .twoPlayer > div {
@@ -75,7 +87,8 @@ p {
 
 .twoPlayer > button,
 .game #newGame,
-.game #resetBoard {
+.game #resetBoard,
+#againstComputer {
   color: white;
   border: none;
   border-radius: 10px;
@@ -84,7 +97,8 @@ p {
 }
 
 .twoPlayer > button,
-.game #newGame {
+.game #newGame,
+#againstComputer {
   background-color: #043f88;
 }
 
@@ -99,11 +113,11 @@ p {
 }
 
 .turn {
-    padding-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .winner {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .gameButtons,
