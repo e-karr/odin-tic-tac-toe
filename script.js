@@ -127,7 +127,9 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
     );
 
     if (winner === 'winner') {
-      return `${getActivePlayer().getName()} wins!`;
+      return getActivePlayer().getName() !== ''
+        ? `${getActivePlayer().getName()} wins!`
+        : 'Player One wins!';
     } else if (winner === 'tie') {
       return "It's a tie";
     }
@@ -146,9 +148,9 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
 }
 
 function ScreenControler() {
-  let playerOneName = document.querySelector('#player1name');
-  let playerTwoName = document.querySelector('#player2name');
-  let game = PlayGame(playerOneName, playerTwoName);
+  let playerOneNameInput = document.querySelector('#player1name');
+  let playerTwoNameInput = document.querySelector('#player2name');
+  let game = PlayGame(playerOneNameInput, playerTwoNameInput);
   const playerTurnDiv = document.querySelector('.turn');
   const boardDiv = document.querySelector('.board');
   const winnerDiv = document.querySelector('.winner');
@@ -158,10 +160,12 @@ function ScreenControler() {
   const playersDiv = document.querySelector('.players');
   const againstComputerButton = document.querySelector('#againstComputer');
   let againstComputer = false;
+  let playerOne;
+  let playerTwo;
 
   const getPlayerNames = () => {
-    let playerOne = playerOneName.value;
-    let playerTwo = playerTwoName.value;
+    playerOne = playerOneNameInput.value;
+    playerTwo = playerTwoNameInput.value;
     playersDiv.style.visibility = 'hidden';
     gameDiv.style.visibility = 'visible';
     game = PlayGame(playerOne, playerTwo);
@@ -170,8 +174,8 @@ function ScreenControler() {
   };
 
   const playAgainstComputer = () => {
-    let playerOne = playerOneName.value;
-    let playerTwo = 'Computer';
+    playerOne = playerOneNameInput.value;
+    playerTwo = 'Computer';
     againstComputer = true;
 
     playersDiv.style.visibility = 'hidden';
@@ -182,7 +186,7 @@ function ScreenControler() {
   };
 
   const resetBoard = () => {
-    game = PlayGame(playerOneName.value, playerTwoName.value);
+    game = PlayGame(playerOne, playerTwo);
     winnerDiv.textContent = '';
     updateBoard();
   };
@@ -190,10 +194,11 @@ function ScreenControler() {
   const newGame = () => {
     playersDiv.style.visibility = 'visible';
     gameDiv.style.visibility = 'hidden';
-    playerOneName.value = '';
-    playerTwoName.value = '';
+    playerOneNameInput.value = '';
+    playerTwoNameInput.value = '';
     winnerDiv.textContent = '';
-    game = PlayGame(playerOneName.value, playerTwoName.value);
+    game = PlayGame(playerOneNameInput.value, playerTwoNameInput.value);
+    againstComputer = false;
     updateBoard();
   };
 
@@ -206,7 +211,10 @@ function ScreenControler() {
     const activePlayer = game.getActivePlayer();
 
     //displayer player's turn
-    playerTurnDiv.textContent = `${activePlayer.getName()}'s turn...`;
+    playerTurnDiv.textContent =
+      activePlayer.getName() !== ''
+        ? `${activePlayer.getName()}'s turn...`
+        : "Player One's turn";
 
     //render board
     board.forEach((row, rowIndex) => {
