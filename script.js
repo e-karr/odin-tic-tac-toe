@@ -155,7 +155,7 @@ function ScreenControler() {
   const resetBoardButton = document.querySelector('#resetBoard');
   const newGameButton = document.querySelector('#newGame');
   const gameDiv = document.querySelector('.game');
-  const playersDiv = document.querySelector('.twoPlayer');
+  const playersDiv = document.querySelector('.players');
   const againstComputerButton = document.querySelector('#againstComputer');
   let againstComputer = false;
 
@@ -235,8 +235,8 @@ function ScreenControler() {
   };
 
   const computerTurn = () => {
-    let selectedColumn;
-    let selectedRow;
+    let selectedColumn = Math.floor(Math.random() * game.columns);
+    let selectedRow = Math.floor(Math.random() * game.rows);
 
     const board = game.getBoard();
 
@@ -267,8 +267,8 @@ function ScreenControler() {
 
     updateBoard();
 
-    if (againstComputer) {
-      setTimeout(computerTurn, 2000);
+    if (againstComputer && !winner) {
+      setTimeout(computerTurn, 1000);
     }
   }
 
