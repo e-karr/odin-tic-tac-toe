@@ -155,7 +155,7 @@ function ScreenControler() {
   const resetBoardButton = document.querySelector('#resetBoard');
   const newGameButton = document.querySelector('#newGame');
   const gameDiv = document.querySelector('.game');
-  const playersDiv = document.querySelector('.players');
+  const playersDiv = document.querySelector('.twoPlayer');
   let againstComputer = false;
 
   const getPlayerNames = () => {

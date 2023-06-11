@@ -58,7 +58,7 @@ p {
   width: 350px;
 }
 
-.players {
+.twoPlayer {
   visibility: visible;
   background-color: #bce000;
   position: absolute;
@@ -69,11 +69,11 @@ p {
   padding: 3rem 6rem;
 }
 
-.players > div {
+.twoPlayer > div {
   margin-bottom: 20px;
 }
 
-.players > button,
+.twoPlayer > button,
 .game #newGame,
 .game #resetBoard {
   color: white;
@@ -83,7 +83,7 @@ p {
   padding: 1rem 2rem;
 }
 
-.players > button,
+.twoPlayer > button,
 .game #newGame {
   background-color: #043f88;
 }
