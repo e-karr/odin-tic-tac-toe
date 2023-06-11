@@ -156,6 +156,7 @@ function ScreenControler() {
   const newGameButton = document.querySelector('#newGame');
   const gameDiv = document.querySelector('.game');
   const playersDiv = document.querySelector('.twoPlayer');
+  const againstComputerButton = document.querySelector('#againstComputer');
   let againstComputer = false;
 
   const getPlayerNames = () => {
@@ -178,7 +179,7 @@ function ScreenControler() {
     game = PlayGame(playerOne, playerTwo);
 
     updateBoard();
-  }
+  };
 
   const resetBoard = () => {
     game = PlayGame(playerOneName.value, playerTwoName.value);
@@ -233,7 +234,7 @@ function ScreenControler() {
     });
   };
 
-  const  computerTurn = () => {
+  const computerTurn = () => {
     let selectedColumn;
     let selectedRow;
 
@@ -251,7 +252,7 @@ function ScreenControler() {
     }
 
     updateBoard();
-  }
+  };
 
   function clickHandlerBoard(e) {
     const selectedRow = e.target.dataset.row;
@@ -276,7 +277,7 @@ function ScreenControler() {
     getPlayerNames();
     e.preventDefault();
   });
-
+  againstComputerButton.addEventListener('click', playAgainstComputer);
   resetBoardButton.addEventListener('click', resetBoard);
   newGameButton.addEventListener('click', newGame);
   boardDiv.addEventListener('click', clickHandlerBoard);
