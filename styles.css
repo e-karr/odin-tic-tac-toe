@@ -68,24 +68,44 @@ p {
   text-align: center;
   padding: 3rem 6rem;
 
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 
-.computer {
-  border-left: 2px solid #043f88;
-  padding-left: 2rem;
+.player1 {
+  grid-column: 1 / span 3;
+  border-bottom: 2px solid #043f88;
 }
 
-.computer>p {
+.player2 {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#or {
+  grid-column: 2;
+  grid-row: 2;
+  place-self: center;
   font-size: 1.5rem;
+  padding: 0 1rem;
 }
 
-.twoPlayer > div {
+#submitNames {
+  margin-top: 1rem;
+}
+
+#againstComputer {
+  grid-column: 3;
+  grid-row: 2;
+  place-self: center;
+}
+
+.players > div {
   margin-bottom: 20px;
 }
 
-.twoPlayer > button,
+#submitNames,
 .game #newGame,
 .game #resetBoard,
 #againstComputer {
@@ -96,7 +116,7 @@ p {
   padding: 1rem 2rem;
 }
 
-.twoPlayer > button,
+#submitNames,
 .game #newGame,
 #againstComputer {
   background-color: #043f88;
