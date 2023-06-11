@@ -66,7 +66,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
         }
       }
 
-      if (tokenCounter === 3) {
+      if (tokenCounter === columns) {
         return 'winner';
       }
     }
@@ -83,7 +83,7 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
         }
       }
 
-      if (tokenCounter === 3) {
+      if (tokenCounter === rows) {
         return 'winner';
       }
     }
@@ -136,7 +136,13 @@ function PlayGame(playerOneName = 'Player One', playerTwoName = 'Player Two') {
     switchPlayerTurn();
   };
 
-  return { playRound, getActivePlayer, getBoard: board.getBoard };
+  return {
+    playRound,
+    getActivePlayer,
+    getBoard: board.getBoard,
+    rows: board.rows,
+    columns: board.columns,
+  };
 }
 
 function ScreenControler() {
@@ -150,6 +156,7 @@ function ScreenControler() {
   const newGameButton = document.querySelector('#newGame');
   const gameDiv = document.querySelector('.game');
   const playersDiv = document.querySelector('.players');
+  let againstComputer = false;
 
   const getPlayerNames = () => {
     let playerOne = playerOneName.value;
@@ -160,6 +167,18 @@ function ScreenControler() {
 
     updateBoard();
   };
+
+  const playAgainstComputer = () => {
+    let playerOne = playerOneName.value;
+    let playerTwo = 'Computer';
+    againstComputer = true;
+
+    playersDiv.style.visibility = 'hidden';
+    gameDiv.style.visibility = 'visible';
+    game = PlayGame(playerOne, playerTwo);
+
+    updateBoard();
+  }
 
   const resetBoard = () => {
     game = PlayGame(playerOneName.value, playerTwoName.value);
@@ -214,6 +233,26 @@ function ScreenControler() {
     });
   };
 
+  const  computerTurn = () => {
+    let selectedColumn;
+    let selectedRow;
+
+    const board = game.getBoard();
+
+    while (board[selectedRow][selectedColumn].getValue() !== '') {
+      selectedColumn = Math.floor(Math.random() * game.columns);
+      selectedRow = Math.floor(Math.random() * game.rows);
+    }
+
+    const winner = game.playRound(selectedRow, selectedColumn);
+
+    if (winner) {
+      winnerDiv.textContent = winner;
+    }
+
+    updateBoard();
+  }
+
   function clickHandlerBoard(e) {
     const selectedRow = e.target.dataset.row;
     const selectedColumn = e.target.dataset.column;
@@ -226,6 +265,10 @@ function ScreenControler() {
     }
 
     updateBoard();
+
+    if (againstComputer) {
+      setTimeout(computerTurn, 2000);
+    }
   }
 
   // add event listeners
